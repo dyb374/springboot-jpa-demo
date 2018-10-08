@@ -1,6 +1,6 @@
-package com.dyb.demo.Service;
+package com.dyb.demo.service;
 
-import com.dyb.demo.Entity.Category;
+import com.dyb.demo.entity.Category;
 
 import java.util.List;
 

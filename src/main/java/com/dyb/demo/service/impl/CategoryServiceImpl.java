@@ -1,10 +1,9 @@
-package com.dyb.demo.Service.Impl;
+package com.dyb.demo.service.impl;
 
-import com.dyb.demo.Dao.CategoryDao;
-import com.dyb.demo.Entity.Category;
-import com.dyb.demo.Service.CategoryService;
+import com.dyb.demo.repository.CategoryRepository;
+import com.dyb.demo.entity.Category;
+import com.dyb.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +13,13 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryRepository categoryRepository;
 
     @Override
     @Cacheable(value = "category", key = "#id")
     public Category findCategoryById(int id) {
         Category category;
-        category = categoryDao.findById(id);
+        category = categoryRepository.findById(id);
 
         return category;
     }
@@ -28,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findCategoriesByName(String name) {
         List<Category> categories;
-        categories = categoryDao.findByName(name);
+        categories = categoryRepository.findByName(name);
 
         return categories;
     }

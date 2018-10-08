@@ -1,4 +1,4 @@
-package com.dyb.demo.Entity;
+package com.dyb.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class Category implements Serializable {
     private String name;
 
     @Column(name = "num")
-    private Integer num11;/*对应dao中自动生成的字段*/
+    private Integer num;/*对应dao中自动生成的字段*/
 
     public Integer getId() {
         return id;
@@ -34,12 +34,12 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Integer getNum11() {
-        return num11;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setNum11(Integer num11) {
-        this.num11 = num11;
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public Category() {
