@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class PersonController {
     @Autowired
     PersonService personService;
 
+    /**
+     * @param id
+     * @return Person
+     */
     @GetMapping(value = "/persons/{id}")
     public Person findPersonById(@PathVariable() Integer id){
         Person person = personService.findPersonById(id);
@@ -34,4 +39,11 @@ public class PersonController {
         }
         return personService.addPerson(person);
     }
+
+    @GetMapping(value = "/persons")
+    public List<Person> getAll(){
+        return personService.listAll();
+    }
+
+
 }
