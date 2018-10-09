@@ -1,9 +1,10 @@
 package com.dyb.demo.controller;
 
 import com.dyb.demo.entity.Person;
+import com.dyb.demo.entity.Result;
 import com.dyb.demo.service.PersonService;
+import com.dyb.demo.untils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,15 +30,11 @@ public class PersonController {
 
 
     /*
-    添加@Valid注解来验证传入的数据，需符合entity中设置的约束条件,验证结果在bindingResult对象中
+    添加@Valid注解来验证传入的数据，需符合entity中设置的约束条件,不将验证结果放在bindingResult对象中,而是会抛出异常
      */
     @PostMapping(value = "/persons")
-    public Person addPerson(@Valid Person person, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
-        }
-        return personService.addPerson(person);
+    public Result<Person> addPerson(@Valid Person person){
+        return ResultUtil.success(personService.addPerson(person));
     }
 
     @GetMapping(value = "/persons")
